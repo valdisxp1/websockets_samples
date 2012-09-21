@@ -1,0 +1,41 @@
+<html>
+<head>
+<script language="javascript" src="libs/move.js?v=1.3&i=n"></script>
+<script language="javascript" src="../../game_b1.3/libs/multiajax.js?v=1.3"></script>
+<script language="javascript" src="../../game_b1.3/libs/grafix.js?v=1.3.1&i=n"></script>
+<script language="javascript" src="move_test4.js"></script>
+
+</head>
+<body>
+<table border="1">
+<tr><td><iframe id="ir" width="400" height="400"></iframe></td>
+<td><p id="here"></p></td><tr>
+</table>
+<p id="time"></p>
+<input type="button" onClick="init()" value="INIT"><br>
+name
+<input type="text" value="vards" id="n_name"><nobr>
+start
+<input type="text" value="0" id="n_x">
+<input type="text" value="0" id="n_y">
+<input type="text" value="0" id="n_z"></nobr>
+<nobr>
+d
+<input type="text" value="0" id="n_dx">
+<input type="text" value="0" id="n_dy">
+<input type="text" value="0" id="n_dz"></nobr>
+<nobr>
+v
+<input type="text" value="0" id="n_v"></nobr>
+<!--<input type="button" onClick="newItem()" value="newItem">-->
+<input type="button" onClick="send()" value="SEND"><br>
+name
+<input type="text" value="vards" id="s_name"><br>
+<input type="button" onClick="chdir(all.s_name.value,0,-1,0)" value="UP">
+<input type="button" onClick="chdir(all.s_name.value,-1,0,0)" value="LEFT">
+<input type="button" onClick="chdir(all.s_name.value,1,0,0)" value="RIGHT"><br>
+<input type="button" onClick="chdir(all.s_name.value,0,1,0)" value="DOWN">
+<input type="button" onClick="chspeed(all.s_name.value,0)" value="STOP">
+<input type="button" onClick="chspeed(all.s_name.value,20)" value="GO">
+</body>
+</html>
