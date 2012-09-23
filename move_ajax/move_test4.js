@@ -53,9 +53,11 @@ xMV.setNewItemEvent(function(oname,obj){
 	gx.newItem(obj.name,obj);
 	});
 	socks.newsocket_sget("time",movedir+"timesync.php",function(){
+		console.log("sync "+this.X.responseText);
 		xMV.setDate(this.X.responseText*1);
 	});
 	socks.newsocket_sget("all",movedir+"status.php",function(){
+		console.log("status msg: "+this.X.responseText);
 		xMV.makeAll(eval(this.X.responseText));
 	});
 	socks.newcolection("sakums",function(){

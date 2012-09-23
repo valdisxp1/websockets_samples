@@ -24,7 +24,7 @@ function render_obj(){
 } 
 function cords(){this.x=0;this.y=0;this.z=0;}
 function rcords(){this.x=1.0;this.y=1.0;this.z=1.0;}
-var area;
+//var area;
 this.init=function(mode,a){
 	//default case
 	tmp=new Object;
@@ -83,6 +83,7 @@ function newI_IFRAME(oname,obj,flags){
 	kname=Robj[oname].lookalike;
 	if(Komp[kname].type=="div"){
 		area.here.innerHTML+="<div id=\"div_"+oname+"\"></div>";}
+		console.log(">> "+"div_"+oname);
 	area["div_"+oname].style.position="absolute";
 	area["div_"+oname].style.width=Robj[oname].size.x*Komp[kname].rsize.x;
 	area["div_"+oname].style.height=Robj[oname].size.y*Komp[kname].rsize.y;
