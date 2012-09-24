@@ -1,5 +1,4 @@
 var xMV=new MOVE();
-var socks=new MAJAX();
 var timer,timer2;
 var movedir="php/";
 var all;
@@ -52,27 +51,23 @@ xMV.setNewItemEvent(function(oname,obj){
 	where.innerHTML+="v= "+obj.v;
 	gx.newItem(obj.name,obj);
 	});
-	socks.newsocket_sget("time",movedir+"timesync.php",function(){
-		console.log("sync "+this.X.responseText);
-		xMV.setDate(this.X.responseText*1);
-	});
-	socks.newsocket_sget("all",movedir+"status.php",function(){
-		console.log("status msg: "+this.X.responseText);
-		xMV.makeAll(eval(this.X.responseText));
-	});
-	socks.newcolection("sakums",function(){
-		socks.newsocket_sget("sync",movedir+"status.php?t="+xMV.getDate(),function(){
-			if((this.X.responseText+"")!="TIMEOUT"){xMV.makeAll(eval(this.X.responseText));}
-			listenLoop();
-	});
-			listenLoop();
-	});
-	socks.addsocket("time","sakums");socks.addsocket("all","sakums");
-	socks.runall("sakums");
+	all.datesync.contentDocument.location = movedir+"timesync.php";
 	loop();
 }
 function listenLoop(){
-	socks.runsocket("sync");
+	var url = movedir+"status.php?t="+xMV.getDate();
+	all.recieve.contentDocument.location=url;
+	all.recieve.contentDocument.onload=listenLoop;
+}
+
+function _sync(seconds){
+	xMV.setDate(seconds);
+	listenLoop();
+}
+
+function _recieve(text){
+	console.log("status msg: "+text);
+	xMV.makeAll(eval(text));
 }
 function send(){
 	tmp=new Object;
@@ -85,12 +80,11 @@ function send(){
 	tmp.dy=all.n_dy.value;
 	tmp.dz=all.n_dz.value;
 	tmp.v=all.n_v.value;
-	url=movedir+"cdir_xyz.php?name="+tmp.name;
+	var url=movedir+"cdir_xyz.php?name="+tmp.name;
 	url+="&x="+tmp.x+"&y="+tmp.y+"&z="+tmp.z;
 	url+="&dx="+tmp.dx+"&dy="+tmp.dy+"&dz="+tmp.dz;
 	url+="&v="+tmp.v;
-	socks.newsocket_sget("send",url,function(){});
-	socks.runsocket("send");
+	all.send.document.location=url;
 }
 function chdir(name,dx,dy,dz){
 	var tprev=xMV.getCords(name);
@@ -103,12 +97,11 @@ function chdir(name,dx,dy,dz){
 	tmp.dy=dy;
 	tmp.dz=dz;
 	tmp.v=tprev.v;
-	url=movedir+"cdir_xyz.php?name="+tmp.name;
+	var url=movedir+"cdir_xyz.php?name="+tmp.name;
 	url+="&x="+tmp.x+"&y="+tmp.y+"&z="+tmp.z;
 	url+="&dx="+tmp.dx+"&dy="+tmp.dy+"&dz="+tmp.dz;
 	url+="&v="+tmp.v;
-	socks.newsocket_sget("send",url,function(){});
-	socks.runsocket("send");
+	all.send.contentDocument.location=url;
 }
 function chspeed(name,v){
 	var tprev=xMV.getCords(name);
@@ -121,10 +114,9 @@ function chspeed(name,v){
 	tmp.dy=tprev.norm.y;
 	tmp.dz=tprev.norm.z;
 	tmp.v=v;
-	url=movedir+"cdir_xyz.php?name="+tmp.name;
+	var url=movedir+"cdir_xyz.php?name="+tmp.name;
 	url+="&x="+tmp.x+"&y="+tmp.y+"&z="+tmp.z;
 	url+="&dx="+tmp.dx+"&dy="+tmp.dy+"&dz="+tmp.dz;
 	url+="&v="+tmp.v;
-	socks.newsocket_sget("send",url,function(){});
-	socks.runsocket("send");
+	all.send.contentDocument.location=url;
 }

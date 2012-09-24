@@ -2,7 +2,7 @@
 include("timestamp.php");
 include("../params.php");
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-header("Content-type:application/json");
+header("Content-type:text/html");
 $con = mysql_connect($db_adress,$db_user,$db_pas);
 $RETRY_COUNT=1000;
 $RETRY_DELAY=10000;
@@ -56,7 +56,7 @@ if($en=="a"){
 {$sendable = json_encode($rez);}
 
 echo "<script>";
-echo "send(\"$sendable\")";
+echo "_recieve(\"$sendable\")";
 echo "</script>";
 
 mysql_close($con);
