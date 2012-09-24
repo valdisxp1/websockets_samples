@@ -50,10 +50,14 @@ if($en=="a"){
  if(is_array($value)){ $tmp[]=implode(",",$value);}else{$tmp[]=$value;} 
  /*var_dump($tmp);*/}
  //var_dump($rez);
- echo implode("@",$tmp);
+ $sendable = implode("@",$tmp);
  //var_dump($rez);
 }else
-{echo json_encode($rez);}
+{$sendable = json_encode($rez);}
+
+echo "<script>";
+echo "send(\"$sendable\")";
+echo "</script>";
 
 mysql_close($con);
 ?>
