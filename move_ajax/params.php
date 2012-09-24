@@ -1,7 +1,7 @@
 <?php // globaalie parametri
 // datu baaze
 $db_adress="localhost";
-$db_user="root";
+$db_user="user";
 $db_pas="passwd";
 $db_db="spele";
 $db_prefix="";
