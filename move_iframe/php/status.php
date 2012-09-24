@@ -41,7 +41,11 @@ while($row = mysql_fetch_array($result)){
 //echo "a\n";
 flush();
 usleep($RETRY_DELAY);}
-if($rez_count==0){die('TIMEOUT');}
+if($rez_count==0){
+echo "<script>";
+echo "parent.listenLoop();";
+echo "</script>";
+die('TIMEOUT');}
 }
 
 //var_dump($rez);
@@ -56,7 +60,7 @@ if($en=="a"){
 {$sendable = json_encode($rez);}
 
 echo "<script>";
-echo "_recieve(\"$sendable\")";
+echo "parent._recieve($sendable);parent.listenLoop();";
 echo "</script>";
 
 mysql_close($con);

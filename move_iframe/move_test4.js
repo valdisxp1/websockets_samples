@@ -55,14 +55,18 @@ xMV.setNewItemEvent(function(oname,obj){
 	loop();
 }
 function listenLoop(){
-	var url = movedir+"status.php?t="+xMV.getDate();
+	var url = /*movedir+*/"status.php?t="+xMV.getDate();
+	console.log(url);
 	all.recieve.contentDocument.location=url;
-	all.recieve.contentDocument.onload=listenLoop;
 }
 
 function _sync(seconds){
 	xMV.setDate(seconds);
-	listenLoop();
+	listenStart();
+}
+
+function listenStart(){
+	all.recieve.contentDocument.location="status.php";
 }
 
 function _recieve(text){
