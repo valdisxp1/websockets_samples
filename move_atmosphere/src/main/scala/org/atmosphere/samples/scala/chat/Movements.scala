@@ -25,15 +25,21 @@ class Movements {
   @BeanProperty
   var name: String = null
   @BeanProperty
-  var author: String = null
+  var x:Int = 0;
   @BeanProperty
-  var time: Long = 0L
+  var y:Int = 0;
+  @BeanProperty
+  var z:Int = 0;
 
-  def this(name: String, text: String) {
+  def this(name: String) {
     this ()
     this.author = author
     this.text = text
     this.time = new Date().getTime
+  }
+
+  def cords(x:Int,y:Int,z:Int):Unit {
+    this.x=x;this.y=y;this.z=z;
   }
 
 }
