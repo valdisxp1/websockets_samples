@@ -88,7 +88,7 @@ function send(){
 	url+="&x="+tmp.x+"&y="+tmp.y+"&z="+tmp.z;
 	url+="&dx="+tmp.dx+"&dy="+tmp.dy+"&dz="+tmp.dz;
 	url+="&v="+tmp.v;
-	all.send.document.location=url;
+	all.send.contentDocument.location=url;
 }
 function chdir(name,dx,dy,dz){
 	var tprev=xMV.getCords(name);
